@@ -150,7 +150,6 @@ const LoginPage = () => {
                   </Button>
                 </Link>
               </div>
-            </div>
           </CardContent>
         </Card>
       </div>
