@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NexaSphere Clean 🧼✨
 
-## Getting Started
+**NexaSphere Clean** is an AI-powered SaaS platform designed for luxury house cleaning services. It combines high-conversion marketing, intelligent pricing, and robust CRM capabilities into a single, production-ready ecosystem.
 
-First, run the development server:
+## 🚀 Quick Start
 
+### 1. Local Development
 ```bash
+# Install dependencies
+npm install
+
+# Set up environment variables
+cp .env.example .env.local
+
+# Start the dev server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Docker Deployment
+```bash
+# Build and run with Docker Compose
+docker-compose up -d --build
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# VPS Access
+# Host: 72.62.162.228
+# User: root
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🏗 Tech Stack
+- **Frontend**: Next.js 15 (App Router), Tailwind CSS 4, Framer Motion, ShadCN UI.
+- **Backend**: Supabase (PostgreSQL, Auth, RLS, Edge Functions).
+- **AI**: OpenRouter (Gemini/GPT-4) for marketing automation.
+- **Payments**: Stripe.
+- **Communication**: Resend (Email), Twilio (SMS).
+- **Infrastructure**: Docker, NGINX Reverse Proxy, GitHub Actions.
 
-## Learn More
+## 🧠 Key Features
+- **Intelligent Estimate Calculator**: Dynamic pricing based on property type, size, rooms, and AI-driven multipliers.
+- **Conversion-Focused Landing Page**: Premium design with glassmorphism and smooth animations.
+- **Admin CRM Dashboard**: Real-time revenue analytics, lead tracking, and job management.
+- **AI Marketing Engine**: Automated generation of ads (Google, FB, Craigslist) and email nurturing.
+- **Local SEO Engine**: Programmatic page structure for city-specific targeting.
 
-To learn more about Next.js, take a look at the following resources:
+## 🗺 Roadmaps
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Phase 1: MVP (Complete)
+- [x] High-fidelity landing page.
+- [x] Intelligent pricing engine.
+- [x] Database schema & RLS.
+- [x] Docker & CI/CD scaffolding.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Phase 2: Growth
+- [ ] Stripe Connect integration for cleaner payouts.
+- [ ] Programmatic SEO page generation for 100+ cities.
+- [ ] AI-driven lead scoring and automated drip campaigns.
+- [ ] Cleaner Mobile PWA for schedule management.
 
-## Deploy on Vercel
+### Phase 3: Scale
+- [ ] Multi-region expansion logic.
+- [ ] AI Customer Support Bot (Voice + Text).
+- [ ] Advanced predictive analytics for revenue forecasting.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🛡 License
+MIT © NexaSphere Clean
