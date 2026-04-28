@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { supabase } from '@/lib/supabase/client';
+import { scoreLead } from '@/lib/actions/lead-scoring';
 
 export type BookingData = {
   propertyType: string;
@@ -49,6 +50,9 @@ export const useBooking = () => {
         .single();
 
       if (quoteError) throw quoteError;
+
+      // 3. Trigger lead scoring (async, don't wait for it to finish to return to UI)
+      scoreLead(quote.id);
 
       return quote;
     } catch (err: any) {

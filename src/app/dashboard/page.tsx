@@ -19,6 +19,7 @@ import {
   LineChart,
   Line
 } from 'recharts';
+import LeadsTable from '@/components/dashboard/LeadsTable';
 
 const data = [
   { name: 'Mon', revenue: 4000, bookings: 24 },
@@ -135,6 +136,67 @@ const Dashboard = () => {
             </button>
           </CardContent>
         </Card>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+        <Card className="border-none shadow-sm rounded-3xl">
+          <CardHeader>
+            <CardTitle className="text-lg font-bold flex items-center gap-2">
+              <TrendingUp className="w-5 h-5 text-primary" />
+              AI Revenue Forecast (Next 30 Days)
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="h-[250px] w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={[
+                  { name: 'Week 1', revenue: 12000 },
+                  { name: 'Week 2', revenue: 15000 },
+                  { name: 'Week 3', revenue: 18500 },
+                  { name: 'Week 4', revenue: 22000 },
+                ]}>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
+                  <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: '#64748b', fontSize: 12}} />
+                  <YAxis axisLine={false} tickLine={false} tick={{fill: '#64748b', fontSize: 12}} />
+                  <Tooltip 
+                    contentStyle={{borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)'}}
+                  />
+                  <Line type="monotone" dataKey="revenue" stroke="oklch(0.697 0.143 160.33)" strokeWidth={4} dot={{ r: 6, fill: 'white', strokeWidth: 2 }} />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="border-none shadow-sm rounded-3xl">
+          <CardHeader>
+            <CardTitle className="text-lg font-bold">Marketing Performance</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {[
+                { source: 'Google LSA', leads: 42, conversion: '32%' },
+                { source: 'Facebook Local', leads: 28, conversion: '18%' },
+                { source: 'Yelp', leads: 15, conversion: '12%' },
+                { source: 'Craigslist', leads: 12, conversion: '8%' },
+              ].map((src, i) => (
+                <div key={i} className="flex items-center justify-between p-4 bg-slate-50 rounded-xl">
+                  <div className="font-bold text-sm text-slate-900">{src.source}</div>
+                  <div className="flex gap-4 text-xs font-medium text-slate-500">
+                    <span>{src.leads} Leads</span>
+                    <span className="text-emerald-600">{src.conversion} Conv.</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Recent Leads Section */}
+      <div className="mb-8">
+        <h2 className="text-xl font-bold text-slate-900 mb-6">Recent Quotes & Leads</h2>
+        <LeadsTable />
       </div>
     </div>
   );

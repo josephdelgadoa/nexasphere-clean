@@ -8,7 +8,7 @@ import {
   Sparkles, 
   ShieldCheck, 
   Clock, 
-  Home, 
+  Home as HomeIcon, 
   Building2, 
   Zap,
   Star
@@ -18,7 +18,7 @@ const services = [
   {
     title: 'Residential Cleaning',
     description: 'Our signature thorough cleaning for your home. We cover every corner, ensuring a pristine living environment.',
-    icon: <Home className="w-8 h-8" />,
+    icon: <HomeIcon className="w-8 h-8" />,
     features: ['Dusting & Polishing', 'Vacuuming & Mopping', 'Kitchen & Bath Sanitize']
   },
   {

@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Sparkles, Instagram, Facebook, Twitter, Mail, Phone, MapPin } from 'lucide-react';
+import { Sparkles, Globe, Users, MessageSquare, Mail, Phone, MapPin } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -22,13 +22,13 @@ const Footer = () => {
             </p>
             <div className="flex items-center gap-4">
               <Link href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-colors">
-                <Instagram className="w-5 h-5" />
+                <Globe className="w-5 h-5" />
               </Link>
               <Link href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-colors">
-                <Facebook className="w-5 h-5" />
+                <Users className="w-5 h-5" />
               </Link>
               <Link href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-colors">
-                <Twitter className="w-5 h-5" />
+                <MessageSquare className="w-5 h-5" />
               </Link>
             </div>
           </div>

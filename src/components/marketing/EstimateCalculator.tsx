@@ -31,6 +31,60 @@ const steps = [
   { id: 'result', title: 'Your Estimate' },
 ];
 
+const EstimateCalculator = () => {
+  const [currentStep, setCurrentStep] = useState(0);
+  const [formData, setFormData] = useState({
+    propertyType: 'house',
+    sqft: 1500,
+    beds: 2,
+    baths: 2,
+    serviceType: 'standard',
+    frequency: 'one-time',
+    addons: [] as string[],
+    zipCode: '',
+  });
+
+  const nextStep = () => setCurrentStep((prev) => Math.min(prev + 1, steps.length - 1));
+  const prevStep = () => setCurrentStep((prev) => Math.max(prev - 1, 0));
+
+  const calculateEstimate = () => {
+    let base = 50;
+    const roomCost = (formData.beds * 30) + (formData.baths * 20);
+    const sqftCost = formData.sqft * 0.15;
+    
+    let multiplier = 1.0;
+    if (formData.serviceType === 'deep') multiplier = 1.5;
+    if (formData.serviceType === 'move') multiplier = 1.8;
+    if (formData.propertyType === 'mansion') multiplier = 2.5;
+    if (formData.propertyType === 'commercial') multiplier = 2.0;
+
+    let addonCost = formData.addons.length * 35; // Flat average for now
+    
+    const total = (base + roomCost + sqftCost + addonCost) * multiplier;
+    
+    let discount = 0;
+    if (formData.frequency === 'weekly') discount = 0.20;
+    if (formData.frequency === 'biweekly') discount = 0.15;
+    if (formData.frequency === 'monthly') discount = 0.10;
+
+    return {
+      price: total * (1 - discount),
+      duration: Math.ceil(total / 40) + 1, // Rough estimate: 1 hour per $40
+      teamSize: total > 200 ? 2 : 1
+    };
+  };
+
+  const estimate = calculateEstimate();
+
+  const toggleAddon = (id: string) => {
+    setFormData(prev => ({
+      ...prev,
+      addons: prev.addons.includes(id) 
+        ? prev.addons.filter(a => a !== id) 
+        : [...prev.addons, id]
+    }));
+  };
+
   const { saveQuote, loading: saving } = useBooking();
 
   const handleSecureBooking = async () => {
