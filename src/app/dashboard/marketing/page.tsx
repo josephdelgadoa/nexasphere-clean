@@ -8,14 +8,14 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { 
   Sparkles, 
-  MegaPhone, 
+  Megaphone, 
   Mail, 
   Search, 
   Copy, 
   Check,
   Zap,
-  Facebook,
-  Instagram,
+  Globe,
+  Users,
   Target
 } from 'lucide-react';
 import { generateMarketingContent } from '@/lib/ai';
@@ -91,7 +91,7 @@ const MarketingEngine = () => {
                 disabled={loading}
                 className="w-full justify-start gap-3 h-12 rounded-xl"
               >
-                <MegaPhone className="w-4 h-4" /> Facebook / Instagram Ad
+                <Megaphone className="w-4 h-4" /> Facebook / Instagram Ad
               </Button>
               <Button 
                 onClick={() => handleGenerate('email')} 

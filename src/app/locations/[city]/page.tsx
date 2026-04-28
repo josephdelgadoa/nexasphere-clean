@@ -7,8 +7,9 @@ import { MapPin, Star, ShieldCheck, Sparkles } from 'lucide-react';
 
 import { Metadata } from 'next';
 
-export async function generateMetadata({ params }: { params: { city: string } }): Promise<Metadata> {
-  const cityName = params.city.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+export async function generateMetadata({ params }: { params: Promise<{ city: string }> }): Promise<Metadata> {
+  const { city } = await params;
+  const cityName = city.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
   return {
     title: `Best Cleaning Service in ${cityName} | NexaSphere Clean`,
     description: `Top-rated residential and commercial cleaning services in ${cityName}. Experience AI-optimized cleaning with 100% satisfaction guarantee. Book your ${cityName} cleaning today!`,
@@ -26,16 +27,17 @@ export async function generateStaticParams() {
   }));
 }
 
-const CityPage = ({ params }: { params: { city: string } }) => {
-  const cityName = params.city.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+const CityPage = async ({ params }: { params: Promise<{ city: string }> }) => {
+  const { city } = await params;
+  const cityName = city.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
 
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     name: `NexaSphere Clean ${cityName}`,
     image: 'https://nexasphere.clean/logo.png',
-    '@id': `https://nexasphere.clean/locations/${params.city}`,
-    url: `https://nexasphere.clean/locations/${params.city}`,
+    '@id': `https://nexasphere.clean/locations/${city}`,
+    url: `https://nexasphere.clean/locations/${city}`,
     telephone: '(800) NEXA-CLEAN',
     address: {
       '@type': 'PostalAddress',

@@ -1,5 +1,9 @@
+'use client';
+
 import React from 'react';
+export const dynamic = 'force-dynamic';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 import { 
   TrendingUp, 
   Users, 

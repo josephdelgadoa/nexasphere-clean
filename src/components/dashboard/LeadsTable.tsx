@@ -14,6 +14,7 @@ import { Button } from '@/components/ui/button';
 import { MoreHorizontal, Eye, Mail, Trash2 } from 'lucide-react';
 import { supabase } from '@/lib/supabase/client';
 import { formatDistanceToNow } from 'date-fns';
+import { cn } from '@/lib/utils';
 
 const LeadsTable = () => {
   const [leads, setLeads] = useState<any[]>([]);
@@ -102,7 +103,5 @@ const LeadsTable = () => {
     </div>
   );
 };
-
-import { cn } from '@/lib/utils';
 
 export default LeadsTable;

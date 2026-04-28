@@ -199,7 +199,10 @@ const EstimateCalculator = () => {
                               value={[formData.sqft]} 
                               max={8000} 
                               step={100}
-                              onValueChange={(val) => setFormData({ ...formData, sqft: val[0] })}
+                              onValueChange={(val) => {
+                                const value = Array.isArray(val) ? val[0] : val;
+                                setFormData({ ...formData, sqft: value });
+                              }}
                             />
                           </div>
 

@@ -1,11 +1,10 @@
 'use server';
 
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import { cookies } from 'next/headers';
+import { createClient } from '@/lib/supabase/server';
 import { revalidatePath } from 'next/cache';
 
 export async function checkInToJob(appointmentId: string) {
-  const supabase = createServerComponentClient({ cookies });
+  const supabase = createClient();
   
   const { data, error } = await supabase
     .from('appointments')
@@ -25,7 +24,7 @@ export async function checkInToJob(appointmentId: string) {
 }
 
 export async function checkOutFromJob(appointmentId: string, notes?: string) {
-  const supabase = createServerComponentClient({ cookies });
+  const supabase = createClient();
   
   const { data, error } = await supabase
     .from('appointments')

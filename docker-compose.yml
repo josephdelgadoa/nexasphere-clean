@@ -6,8 +6,8 @@ services:
     container_name: nexasphere-web
     restart: always
     ports:
-      - "8008:3000" # Exposing port 8008 for Nginx Proxy Manager
-    env_file:
-      - .env.production
+      - "8008:3000"
     environment:
       - NODE_ENV=production
+      - NEXT_TELEMETRY_DISABLED=1
+
