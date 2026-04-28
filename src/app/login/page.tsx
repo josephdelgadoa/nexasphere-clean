@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { Sparkles, Mail, Lock, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -12,9 +12,9 @@ import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
 
 const LoginPage = () => {
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [loading, setLoading] = React.useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -30,7 +30,6 @@ const LoginPage = () => {
       toast.error(error.message);
     } else {
       toast.success('Logged in successfully!');
-      // Check role and redirect
       const { data: profile } = await supabase
         .from('profiles')
         .select('role')
@@ -134,22 +133,26 @@ const LoginPage = () => {
             </div>
 
             <div className="relative my-8">
-                <div className="absolute inset-0 flex items-center"><span className="w-full border-t border-slate-100" /></div>
-                <div className="relative flex justify-center text-xs uppercase"><span className="bg-white px-2 text-slate-400 font-bold">Portal Quick Access</span></div>
+              <div className="absolute inset-0 flex items-center">
+                <span className="w-full border-t border-slate-100" />
               </div>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-white px-2 text-slate-400 font-bold">Portal Quick Access</span>
+              </div>
+            </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                <Link href="/dashboard">
-                  <Button variant="outline" className="w-full h-12 rounded-xl font-bold text-slate-600 border-slate-100 hover:bg-slate-50">
-                    Admin Panel
-                  </Button>
-                </Link>
-                <Link href="/cleaner">
-                  <Button variant="outline" className="w-full h-12 rounded-xl font-bold text-slate-600 border-slate-100 hover:bg-slate-50">
-                    Cleaner Portal
-                  </Button>
-                </Link>
-              </div>
+            <div className="grid grid-cols-2 gap-4">
+              <Link href="/dashboard">
+                <Button variant="outline" className="w-full h-12 rounded-xl font-bold text-slate-600 border-slate-100 hover:bg-slate-50">
+                  Admin Panel
+                </Button>
+              </Link>
+              <Link href="/cleaner">
+                <Button variant="outline" className="w-full h-12 rounded-xl font-bold text-slate-600 border-slate-100 hover:bg-slate-50">
+                  Cleaner Portal
+                </Button>
+              </Link>
+            </div>
           </CardContent>
         </Card>
       </div>
