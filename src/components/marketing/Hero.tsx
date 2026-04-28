@@ -72,8 +72,8 @@ const Hero = () => {
               {/* Replace with actual image later */}
               <div className="aspect-[4/5] bg-slate-100 flex items-center justify-center">
                  <img 
-                   src="https://images.unsplash.com/photo-1581578731548-c64695cc6954?auto=format&fit=crop&q=80&w=1000" 
-                   alt="Modern Living Room"
+                   src="/images/hero-luxury.png" 
+                   alt="NexaSphere Luxury Cleaning Service"
                    className="w-full h-full object-cover"
                  />
               </div>
