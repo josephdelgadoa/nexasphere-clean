@@ -55,6 +55,8 @@ const LoginPage = () => {
     else toast.success('Magic link sent to your email!');
     setLoading(false);
   };
+
+  return (
     <div className="min-h-screen bg-slate-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <Link href="/" className="flex items-center justify-center gap-2 mb-8">
