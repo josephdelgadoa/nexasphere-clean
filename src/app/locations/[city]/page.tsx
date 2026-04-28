@@ -5,8 +5,21 @@ import EstimateCalculator from '@/components/marketing/EstimateCalculator';
 import { Card, CardContent } from '@/components/ui/card';
 import { MapPin, Star, ShieldCheck, Sparkles } from 'lucide-react';
 
+import { Metadata } from 'next';
+
+export async function generateMetadata({ params }: { params: { city: string } }): Promise<Metadata> {
+  const cityName = params.city.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+  return {
+    title: `Best Cleaning Service in ${cityName} | NexaSphere Clean`,
+    description: `Top-rated residential and commercial cleaning services in ${cityName}. Experience AI-optimized cleaning with 100% satisfaction guarantee. Book your ${cityName} cleaning today!`,
+    openGraph: {
+      title: `Expert Cleaning Services in ${cityName}`,
+      description: `Luxury residential and deep cleaning services for ${cityName} residents.`,
+    },
+  };
+}
+
 export async function generateStaticParams() {
-  // In production, this would fetch from Supabase
   const cities = ['palo-alto', 'san-francisco', 'los-angeles', 'miami', 'new-york'];
   return cities.map((city) => ({
     city: city,
@@ -16,8 +29,40 @@ export async function generateStaticParams() {
 const CityPage = ({ params }: { params: { city: string } }) => {
   const cityName = params.city.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    name: `NexaSphere Clean ${cityName}`,
+    image: 'https://nexasphere.clean/logo.png',
+    '@id': `https://nexasphere.clean/locations/${params.city}`,
+    url: `https://nexasphere.clean/locations/${params.city}`,
+    telephone: '(800) NEXA-CLEAN',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: cityName,
+      addressRegion: 'CA',
+      postalCode: '94025',
+      addressCountry: 'US',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 37.4419,
+      longitude: -122.143,
+    },
+    openingHoursSpecification: {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      opens: '08:00',
+      closes: '20:00',
+    },
+  };
+
   return (
     <main className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Navbar />
       
       {/* Localized Hero */}
