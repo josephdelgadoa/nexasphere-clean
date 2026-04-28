@@ -6,22 +6,8 @@ services:
     container_name: nexasphere-web
     restart: always
     ports:
-      - "3000:3000"
+      - "8008:3000" # Exposing port 8008 for Nginx Proxy Manager
     env_file:
       - .env.production
     environment:
       - NODE_ENV=production
-
-  nginx:
-    image: nginx:alpine
-    container_name: nexasphere-proxy
-    restart: always
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./docker/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./docker/certbot/conf:/etc/letsencrypt
-      - ./docker/certbot/www:/var/www/certbot
-    depends_on:
-      - nexasphere-web
